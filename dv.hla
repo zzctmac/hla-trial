@@ -1,0 +1,19 @@
+program dv;
+#include ("stdlib.hhf")
+
+static
+    InitDemo: int32 := 5;
+    NotInitialized: int32;
+    BoolVar: boolean;
+    HasClass: boolean := false;
+    IsClear: boolean := true;
+    LetterA: char := 'A';
+    c : char;
+
+begin dv;
+    stdout.put("InitDemo's value is ", InitDemo, nl, "BoolVar is ", BoolVar, nl, "HasClass is ", HasClass, nl, "IsClear is ", IsClear, nl, "LetterA is ", LetterA, nl, "c is ", c, nl);
+
+    stdout.put("Enter an integer value:");
+    stdin.get(NotInitialized);
+    stdout.put("You entered: ", NotInitialized, nl);
+end dv;
