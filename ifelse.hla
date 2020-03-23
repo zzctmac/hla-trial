@@ -1,0 +1,20 @@
+program ifelse;
+#include("stdlib.hhf")
+
+static
+ c: char;
+
+begin ifelse;
+
+stdout.put("Please enter a char:");
+stdin.get(c);
+
+if (c == 'a') then
+    stdout.put("You selected the 'a' menu item", nl);
+elseif(c == 'b') then
+    stdout.put("You selected the 'b' menu item", nl);
+else 
+    stdout.put("Error: illegal menu item selection", nl);
+endif;
+
+end ifelse;

@@ -1,0 +1,16 @@
+program repeattest;
+
+#include ("stdlib.hhf");
+
+static 
+    i: int8;
+
+begin repeattest;
+
+mov(0, i);
+repeat
+    stdout.put("i=", i, nl);
+    add(1, i);
+until(i == 10);
+
+end repeattest;

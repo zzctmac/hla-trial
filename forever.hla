@@ -1,0 +1,13 @@
+program forevertest;
+#include("stdlib.hhf")
+
+begin forevertest;
+mov(0, ecx);
+
+forever
+stdout.put("i=", ecx, nl);
+add(1, ecx);
+breakif(ecx > 10);
+endfor;
+
+end forevertest;

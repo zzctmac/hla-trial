@@ -1,0 +1,14 @@
+program whiletest;
+#include("stdlib.hhf")
+static
+    i: int8;
+
+begin whiletest;
+
+mov(0, i);
+while(i < 10) do
+    stdout.put("i=", i, nl);
+    add(1, i);
+endwhile;
+
+end whiletest;

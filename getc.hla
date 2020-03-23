@@ -1,0 +1,24 @@
+program ci;
+#include("stdlib.hhf")
+var
+    counter: int32;
+
+begin ci;
+
+repeat
+    mov(14, counter);
+    while(counter > 0) do
+        stdout.put(counter:3);
+        sub(1, counter);
+    endwhile;
+    stdout.put(nl, nl, "Do you wish to see it again?(y/n):");
+    forever
+        stdin.readLn();
+        stdin.getc();
+        breakif(al == 'n');
+        breakif(al == 'y');
+        stdout.put("Error, please enter only 'y' or 'n': ");
+    endfor;
+    stdout.newln();
+until(al == 'n');
+end ci;
