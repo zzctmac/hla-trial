@@ -1,0 +1,7 @@
+program nl1;
+#include ("stdlib.hhf")
+begin nl1;
+stdin.flushInput();
+stdin.geti8();
+stdout.put("al:", al, nl);
+end nl1;

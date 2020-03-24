@@ -1,0 +1,14 @@
+program htc;
+#include ("stdlib.hhf")
+
+static
+    value: int32;
+
+begin htc;
+
+stdin.get(ebx);
+mov(ebx, value);
+
+stdout.put("ebx: ", ebx, " value: ", value, nl);
+
+end htc;

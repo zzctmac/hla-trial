@@ -1,0 +1,20 @@
+program cth;
+#include ("stdlib.hhf")
+
+static
+    value: int32;
+    dv:    dword;
+
+begin cth;
+
+stdin.get(value);
+
+mov(value, eax);
+
+stdout.put("value: ", value, " ", "eax: ", eax, nl);
+
+mov(value, dv);
+
+stdout.put("value: ", value, " ", "dv: ", dv, nl);
+
+end cth;
