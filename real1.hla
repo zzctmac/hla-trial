@@ -1,0 +1,12 @@
+program real1;
+#include ("stdlib.hhf")
+
+static 
+    f1: real32 := 8.5;
+begin real1;
+
+mov(f1, eax);
+
+stdout.put(eax, " ", f1);
+
+end real1;
