@@ -1,0 +1,17 @@
+program c1;
+#include ("stdlib.hhf")
+static
+    i16:int16 := -1;
+begin c1;
+
+stdout.put(i16, nl);
+mov(i16, ax);
+stdout.put(ax, nl);
+
+neg(ax);
+
+mov(ax, i16);
+stdout.put(i16, nl, ax, nl);
+
+
+end c1;
