@@ -1,0 +1,16 @@
+program u;
+#include ("stdlib.hhf")
+begin u;
+
+stdin.getc();
+
+if(al >= 'a') then
+    if(al <= 'z') then
+        and($5f, al);
+    endif;
+
+endif;
+
+stdout.putc(al);
+
+end u;
