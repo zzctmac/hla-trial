@@ -1,0 +1,51 @@
+program a;
+
+#include("stdlib.hhf")
+
+static 
+    a1 : int16 := 0;
+    a2 : int16;
+
+var
+    a3 : int16;
+
+begin a;
+
+
+add(1, a1);
+
+stdout.put(a1, nl);
+
+mov(&a1, eax);
+
+add(1, (type int16[eax]));
+
+stdout.put(a1, nl);
+
+
+add(1, a2[-2]);
+
+stdout.put(a1, nl);
+
+mov(-2, ebx);
+
+add(1, a2[ebx]);
+
+stdout.put(a1, nl);
+
+push(eax);
+
+lea(a3, eax);
+
+add(1, (type int16[eax]));
+
+stdout.put("a3: ", a3, nl);
+
+pop(eax);
+
+add(1, (type int16[eax]));
+
+stdout.put("a3: ", a3, " a1: ", a1, nl);
+
+
+end a;

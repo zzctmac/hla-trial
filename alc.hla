@@ -1,0 +1,8 @@
+program alc;
+#include("stdlib.hhf")
+
+begin alc;
+mov($61, al);
+
+stdout.put("al char ", (type char al), nl);
+end alc;

@@ -1,0 +1,17 @@
+program adrs;
+#include("stdlib.hhf")
+
+static
+    i: int8; @nostorage;
+    byte 0, 1, 2, 3;
+begin adrs;
+
+stdout.put(
+    i[0], nl,
+    i[1], nl,
+    i[2], nl,
+    i[3], nl
+);
+
+
+end adrs;
