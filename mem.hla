@@ -1,0 +1,15 @@
+program mema;
+#include("stdlib.hhf")
+
+begin mema;
+
+mem.alloc(@size(int8));
+
+mov($41, (type int8 [eax]));
+
+
+stdout.put((type char [eax]), nl);
+
+
+mem.free(eax);
+end mema;
