@@ -1,0 +1,31 @@
+program intodemo;
+
+#include("stdlib.hhf")
+
+static
+    lo: int8;
+    ro: int8;
+begin intodemo;
+
+
+try
+    stdout.put("Enter a small integer value (-128..+127):");
+    stdin.geti8();
+    mov(al, lo);
+    stdout.put("Enter a second small integer value (-128..+127):");
+    stdin.geti8();
+    add(lo, al);
+    into();
+    stdout.put("The eight-bit sum is ", (type int8 al), nl);
+exception(ex.ConversionError)
+    stdout.put("You entered illegal characters in the number", nl);
+exception(ex.ValueOutOfRange)
+    stdout.put("The value must be in the range -128..+127", nl);
+exception(ex.IntoInstr)
+    stdout.put(
+        "The sum of the two values is outside the range -128..+127",
+        nl
+    );
+endtry;
+
+end intodemo;

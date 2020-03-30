@@ -1,0 +1,17 @@
+program point1;
+#include("stdlib.hhf")
+
+static
+    i : int32 := 0;
+    p: pointer to int32;
+
+begin point1;
+
+mov(&i, p);
+mov(p, ebx);
+add(1, (type int32 [ebx]));
+
+stdout.put("i is ", i, nl);
+
+
+end point1;

@@ -1,0 +1,37 @@
+program strrefassign;
+
+#include("stdlib.hhf")
+
+static
+    s1: string;
+    s2: string;
+
+begin strrefassign;
+str.alloc(64);
+mov(eax, s2);
+forever
+    stdout.put("Enter a string with at least three characters: ");
+    stdin.a_gets();
+    mov(eax, s1);
+    breakif((type str.strRec [eax]).length >= 3);
+    stdout.put("Please enter a string with at least three chars: ", nl);
+endfor;
+
+stdout.put("You entered: '", s1, "'" nl);
+str.cpy(s1, s2);
+mov(s1, ebx);
+
+stdout.put("s1 = '", s1, "'" nl);
+stdout.put("s2 = '", s2, "'" nl);
+
+mov('a', (type char [ebx]));
+mov('b', (type char [ebx + 1]));
+mov('c', (type char [ebx + 2]));
+
+stdout.put("After assigning 'abc' to the first three characters in s1:", nl nl);
+stdout.put("s1 = '", s1, "'" nl);
+stdout.put("s2 = '", s2, "'" nl);
+
+str.free(s1);
+str.free(s2);
+end strrefassign;

@@ -1,0 +1,25 @@
+program stralloc1;
+
+#include("stdlib.hhf")
+
+static
+    ts: string;
+
+begin stralloc1;
+
+str.alloc(16);
+mov(eax, ts);
+
+stdout.put("Enter a line of text (16 chars, max):");
+stdin.flushInput();
+stdin.gets(ts);
+
+stdout.put("the string you entered was: ", ts, nl);
+
+
+mov(ts, ebx);
+mov((type str.strRec [ebx]).length, eax);
+stdout.put("len = ", (type uns32 eax), nl);
+str.free(ts);
+
+end stralloc1;

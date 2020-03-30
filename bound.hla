@@ -1,0 +1,33 @@
+program bounddemo;
+#include("stdlib.hhf")
+
+static
+    iv: int32;
+    gi: boolean;
+
+begin bounddemo;
+
+repeat
+    mov(false, gi);
+    try
+        stdout.put("Enter an integer between 1 and 10:");
+        stdin.flushInput();
+        stdin.geti32();
+        mov(eax, iv);
+        bound(eax, 1, 10);
+        mov(true, gi);
+    exception(ex.ConversionError)
+        stdout.put("Illegal numeric format, re-enter", nl);
+    exception(ex.ValueOutOfRange)
+        stdout.put("Value is *way* too big, re-enter", nl);
+    exception(ex.BoundInstr)
+        stdout.put(
+            "Value was ", iv, ", it must between 1 and 10, re-enter",
+            nl
+        );
+    endtry;
+until(gi);
+stdout.put("The values you entered, ", iv, " is valid.", nl);
+
+end bounddemo;
+

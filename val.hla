@@ -1,0 +1,18 @@
+program valdemo;
+
+#include("stdlib.hhf")
+
+val
+    nc := 0;
+
+begin valdemo;
+
+mov(nc, eax);
+stdout.put("EAX = ", (type uns32 eax), nl);
+
+?nc := 10;
+mov(nc, eax);
+stdout.put("EAX = ", (type uns32 eax), nl);
+
+
+end valdemo;

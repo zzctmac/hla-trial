@@ -1,0 +1,34 @@
+program strfreedemo2;
+
+#include("stdlib.hhf")
+
+static
+    ts : string;
+    index: int32 := 5;
+
+begin strfreedemo2;
+
+stdout.put("Enter a line of text: ");
+stdin.flushInput();
+stdin.a_gets();
+mov(eax, ts);
+
+stdout.put("The string you entered was: ", ts, nl);
+
+str.free(ts);
+
+mov(ts, ebx);
+
+mov([ebx + 0], al);
+
+stdout.put("The first character is ", (type char al), nl);
+
+mov(index, ecx);
+if(ecx < (type str.strRec [ebx]).length) then
+    mov([ebx+ecx], al);
+else
+    raise(ex.StringIndexError);
+endif;
+
+stdout.put("The", index, "th character is ", (type char al));
+end strfreedemo2;

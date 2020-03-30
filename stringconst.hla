@@ -1,0 +1,16 @@
+program sc;
+
+#include("stdlib.hhf")
+
+const
+    nct : string := "123";
+    tc: text := "123";
+
+begin sc;
+
+mov(tc, ax);
+
+stdout.put("ax is ", (type int16 ax));
+
+
+end sc;

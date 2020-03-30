@@ -1,0 +1,16 @@
+program enumtest;
+#include("stdlib.hhf")
+
+type
+    TD: enum{TapeDAT, Tape8mm, TapeQIC80};
+
+static
+    bu: TD := Tape8mm;
+
+begin enumtest;
+
+mov(bu, al);
+
+stdout.put("al is ", (type uns8 al), nl);
+
+end enumtest;

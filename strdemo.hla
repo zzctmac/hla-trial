@@ -1,0 +1,22 @@
+program strdemo;
+
+#include("stdlib.hhf");
+
+static
+    ts: string := "String of length 19";
+
+begin strdemo;
+
+mov(ts, ebx);
+mov([ebx - 4], eax); // current length
+mov([ebx - 8], ecx);  // maximum length
+
+stdout.put(
+    "theString = '", ts, "'", nl,
+    "length(theString) = ", (type uns32 eax), nl,
+    "maxLength(theString) = ", (type uns32 ecx), nl,
+    "l = ", (type uns32 (type str.strRec [ebx]).length), nl
+    //"ml = ", (type uns32  (type str.strRec [ebx]).maxlen), nl
+);
+
+end strdemo;
