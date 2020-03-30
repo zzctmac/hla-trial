@@ -1,0 +1,29 @@
+program espdemo;
+#include("stdlib.hhf")
+begin espdemo;
+
+stdout.put(esp, nl);
+
+mov(1, eax);
+push(eax);
+
+stdout.put(esp, nl);
+
+mov(2, eax);
+push(eax);
+
+stdout.put(esp, nl);
+
+pop(eax);
+
+stdout.put("expcted 2, get ", (type int32 eax), nl);
+stdout.put(esp, nl);
+
+
+pop(eax);
+
+stdout.put("expcted 1, get ", (type int32 eax), nl);
+stdout.put(esp, nl);
+
+
+end espdemo;
