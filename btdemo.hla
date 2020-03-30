@@ -1,0 +1,32 @@
+program btdemo;
+#include("stdlib.hhf")
+static
+    mainNumber: int32;
+
+begin btdemo;
+
+forever
+    stdout.put("Please enter the main number(end the game by entering 0): ");
+    stdin.flushInput();
+    stdin.geti32();
+    breakif(eax == 0);
+    mov(eax, mainNumber);
+    forever
+        stdout.put("Please enter a bitNumber that you assume the counterpart bit is 1(end the round by entering minus number):");
+        stdin.flushInput();
+        stdin.geti32();
+        breakif((type int32 eax) < 0);
+        bt(eax, mainNumber);
+
+        if(@c) then
+            stdout.put("You are right!" nl)
+        else
+            stdout.put("You are wrong!" nl)
+        endif;
+    endfor;
+
+endfor;
+
+
+
+end btdemo;

@@ -1,0 +1,27 @@
+program extrapop;
+#include("stdlib.hhf")
+
+procedure mut; @noframe; @nodisplay;
+
+begin mut;
+stdout.put("Entered mut", nl);
+pop(eax);
+ret();
+end mut;
+
+
+procedure callMut; @noframe;@nodisplay;
+begin callMut;
+stdout.put("calling mut" nl);
+mut();
+stdout.put("Return from mut" nl);
+ret();
+end callMut;
+
+begin extrapop;
+
+stdout.put("Calling callMut" nl);
+callMut();
+stdout.put("Return from callMut" nl);
+
+end extrapop;

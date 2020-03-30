@@ -1,0 +1,31 @@
+program sps;
+
+#include("stdlib.hhf")
+
+static
+    adr: dword;
+    a: dword;
+    b: dword;
+
+procedure spd; @nodisplay; @noframe;
+begin spd;
+pop(adr);
+pop(b);
+pop(a);
+
+stdout.put("a is ", (type int32 a), " b is ", (type int32 b));
+
+push(adr);
+ret();
+end spd;
+
+begin sps;
+
+mov(1, eax);
+mov(2, ebx);
+push(eax);
+push(ebx);
+spd();
+
+
+end sps;

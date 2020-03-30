@@ -1,0 +1,23 @@
+program record1;
+
+
+
+type
+    student:  record
+        anc: char[65];
+        Major: int16;
+        SSN: char[12];
+    endrecord;
+
+var
+    John: student;
+
+#include("stdlib.hhf")
+
+begin record1;
+
+mov(15, (type word John[65]));
+
+stdout.put("John's Major is ", John.Major, nl);
+
+end record1;

@@ -1,0 +1,21 @@
+program spaces1;
+#include("stdlib.hhf")
+
+procedure ps(N: uns32; c:char);
+begin ps;
+push(ecx);
+mov(N, ecx);
+repeat
+    stdout.put(c);
+    dec(ecx);
+until(ecx == 0);
+pop(ecx);
+end ps;
+
+
+begin spaces1;
+
+ps(20, '-');
+stdout.put("*", nl);
+
+end spaces1;

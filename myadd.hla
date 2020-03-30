@@ -1,0 +1,27 @@
+program myadd;
+
+#include("stdlib.hhf")
+
+procedure ap(a:int32; b: int32; var r: int32);
+begin ap;
+push(eax);
+mov(r, ebx);
+push(ebx);
+
+mov(a, eax);
+add(b, eax);
+mov(eax, (type int32 [ebx]));
+
+pop(ebx);
+pop(eax);
+end ap;
+
+static
+    ar: int32;
+begin myadd;
+
+ap(1, 2, ar);
+
+stdout.put("ar = ", ar , nl);
+
+end myadd;

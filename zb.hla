@@ -1,0 +1,27 @@
+program zb;
+
+#include("stdlib.hhf")
+
+procedure zbs;
+begin zbs;
+mov(0, eax);
+mov(256, ecx);
+repeat
+    mov(eax, [ebx]);
+    add(4, ebx);
+    inc(eax);
+    dec(ecx);
+until(@z);
+end zbs;
+
+static
+    dw: dword[256];
+
+begin zb;
+lea(ebx, dw);
+zbs();
+
+stdout.put("dw[0] is ", (type int32 dw[0]), nl);
+stdout.put("dw[1] is ", (type int32 dw[4]), nl);
+
+end zb;

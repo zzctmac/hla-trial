@@ -1,0 +1,26 @@
+program cest1; // doubtful!!!!
+
+#include("stdlib.hhf")
+
+static
+    cbegin: int8; @nostorage;
+    csv: cset;
+    b: boolean;
+
+begin cest1;
+
+cs.empty(csv);
+
+bts(0, csv);
+bts(1, csv);
+
+bt('A', csv);
+
+if (@c) then
+ stdout.put("A is in the cset", nl);
+else
+ stdout.put("A is not in the cset", nl);
+endif;
+
+
+end cest1;

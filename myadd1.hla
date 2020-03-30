@@ -1,0 +1,17 @@
+program myadd1;
+#include("stdlib.hhf")
+procedure ap(a: int32; b:int32); @returns("EAX");
+begin ap;
+mov(a, eax);
+add(b, eax);
+end ap;
+
+begin myadd1;
+
+if(ap(1,2) == 3) then 
+    stdout.put("calculate success:", (type int32 eax));
+else
+    stdout.put("calculate fail:", (type int32 eax));
+endif;
+
+end myadd1;

@@ -1,0 +1,26 @@
+program spaces;
+#include("stdlib.hhf")
+procedure PrintSpaces;
+begin PrintSpaces;
+push(eax);
+push(ecx);
+mov(40, ecx);
+repeat
+    mov(' ', al);
+    stdout.putc(al);
+    dec(ecx);
+until(ecx == 0);
+pop(ecx);
+pop(eax);
+end PrintSpaces;
+
+begin spaces;
+
+mov(20, ecx);
+repeat
+    PrintSpaces();
+    stdout.put('*', nl);
+    dec(ecx);
+until(ecx == 0);
+
+end spaces;
