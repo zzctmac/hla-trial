@@ -1,0 +1,193 @@
+program qsortdemo;
+#include("stdlib.hhf")
+const 
+    ial: text := "4";
+static
+    ia: int16[ial] := [35,6,7,13];
+
+procedure showArray(beginPtr: uns32; size: int32; length: int32);
+var
+    i: int32;
+    index: int32;
+    mask: uns32;
+begin showArray;
+push(eax);
+push(ebx);
+mov(0, i);
+mov(size, ebx);
+push(ecx);
+mov(0, ecx);
+push(edx);
+sub(1, mask);
+push(ecx);
+intmul(8, size, ecx);
+shr(cl, mask);
+pop(ecx);
+for(mov(beginPtr, edx); ecx < length; inc(ecx)) do
+    push(ebx);
+    intmul(ecx, ebx);
+    mov([edx+ebx], eax);
+    and(mask, eax);
+
+   stdout.put((type int32 eax), " ");
+    pop(ebx);
+endfor;
+stdout.newln();
+
+pop(edx);
+pop(ecx);
+pop(ebx);
+pop(eax);
+
+end showArray;
+
+procedure at(beginPtr: uns32; size: int32; index : int32); @returns("EAX");
+var
+    mask: uns32;
+begin at;
+    mov(0, mask);
+    sub(1, mask);
+    push(ecx);
+    intmul(8, size, ecx);
+    shr(cl, mask);
+    pop(ecx);
+    push(edx);
+    mov(beginPtr, edx);
+    push(ebx);
+    mov(size, ebx);
+    intmul(index, ebx);
+    mov([edx+ebx], eax);
+    and(mask, eax);
+    pop(ebx);
+    pop(edx);
+end at;
+
+procedure write(bp1: uns32; size: int32; value: int32);
+static   
+bs : byte; @nostorage;
+    byte 0, 0, 0, 0;
+
+begin write;
+push(eax);
+mov(value, eax);
+mov(eax,(type int32 bs));
+
+
+push(ebx);
+for(mov(0, ebx); ebx < size; inc(ebx)) do
+    push(ax);
+    mov(bs[ebx], al);
+    push(ebx);
+    add(bp1, ebx);
+    mov(al, (type int8 [ebx]));
+    pop(ebx);
+    pop(ax);
+endfor;
+mov(bp1, ebx);
+mov([ebx], ax);
+pop(ebx);
+pop(eax);
+end write;
+
+procedure partition(beginPtr: uns32; size: int32; length: int32); @returns("EAX");
+var 
+    pivot: int32;
+    index: int32;
+    origin: int32;
+begin partition;
+    push(ecx);
+    mov(length, ecx);
+    if(ecx <= 1) then
+        mov(-1, eax);
+        pop(ecx);
+        exit partition;
+    endif;
+    mov(at(beginPtr, size, 0), pivot);
+    push(edx);
+    mov(0, index);
+    mov(0, ecx);
+    for(mov(beginPtr, edx); ecx < length; inc(ecx)) do
+        at(edx, size, ecx);
+        if (eax <= pivot) then 
+            push(ebx);
+            mov(size, ebx);
+            intmul(index, ebx);
+            add(beginPtr, ebx);
+            push(eax);
+            at(ebx, size, 0);
+            mov(eax, origin);
+            pop(eax);
+            write(ebx, size, eax);
+            pop(ebx);
+
+            push(edx);
+            push(ebx);
+            mov(size, ebx);
+            intmul(ecx, ebx);
+            add(ebx, edx);
+            pop(ebx);
+            write(edx, size, origin);
+            pop(edx);
+                push(ebx);
+                mov(index, ebx);
+                inc(ebx);
+                mov(ebx, index);
+                pop(ebx);
+        endif;
+    endfor;
+    mov(index, edx);
+    dec(edx);
+    intmul(size, edx);
+    add(beginPtr, edx);
+    at(edx, size, 0);
+    write(edx, size, pivot);
+    write(beginPtr, size, eax);
+    mov(index, eax);
+    pop(edx);
+    pop(ecx);
+end partition;
+
+procedure qs(beginPtr: uns32; size: int32; length: int32);
+
+begin qs;
+
+    partition(beginPtr, size, length);
+    if((type int32 eax) <= 0) then
+        exit qs;
+    endif;
+    //stdout.put((type dword beginPtr), " eax is ", (type int32 eax), nl);
+    push(ebx);
+    lea(ebx, ia);
+    showArray(ebx, @size(int16), ial);
+    push(ecx);
+    push(edx);
+    mov(eax, edx);
+  //  stdout.put((type dword beginPtr), " eax is ", (type int32 eax), nl);
+    qs(beginPtr, size, eax);
+    mov(edx, eax);
+    add(1, eax);
+    mov(size, ebx);
+    intmul(eax, ebx);
+    add(beginPtr, ebx);
+    mov(length, ecx);
+    sub(eax, ecx);
+    qs(ebx, size, ecx);
+    pop(edx);
+    pop(ecx);
+    pop(ebx);
+end qs;
+
+
+
+begin qsortdemo;
+lea(eax, ia);
+showArray(eax, @size(int16), ial);
+lea(eax, ia);
+stdout.put("eax is ", eax , nl);
+qs(eax, @size(int16), ial);
+lea(eax, ia);
+stdout.put("eax is ", eax , nl);
+showArray(eax, @size(int16), ial);
+
+end qsortdemo;
+
