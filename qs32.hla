@@ -1,0 +1,145 @@
+program qs32;
+#include("stdlib.hhf")
+
+const
+    arrayNumber: text := "17";
+static
+    ia : int32[arrayNumber]:= [8,6,4,2,7,5,3,1,18,30,5,15,1023,513,66,87,123];
+
+procedure showArray(beginPtr: uns32; length: int32);
+var
+    i: int32;
+    index: int32;
+begin showArray;
+push(eax);
+push(edx);
+push(ecx);
+push(ebx);
+mov(0, ecx);
+mov(4, ebx);
+for(mov(beginPtr, edx); ecx < length; inc(ecx)) do
+    push(ebx);
+    intmul(ecx, ebx);
+    mov([edx+ebx], eax);
+   stdout.put((type int32 eax), " ");
+    pop(ebx);
+endfor;
+stdout.newln();
+pop(ebx);
+pop(ecx);
+pop(edx);
+pop(eax);
+
+end showArray;
+
+procedure partition(beginPtr : uns32; length: int32); @returns("ECX");
+var
+    pivot: int32;
+    index: int32;
+begin partition;
+push(eax);
+mov(length, eax);
+if(eax <= 1) then 
+    mov(-1, ecx);
+    pop(eax);
+    exit partition;
+endif;
+
+mov(beginPtr, eax);
+mov([eax], pivot);
+//stdout.put("pivot is ", pivot, nl);
+mov(0, index);
+
+push(ebx);
+
+for(mov(0, ebx); ebx < length; inc(ebx)) do
+    push(ecx);
+    push(edx);
+    mov(4, ecx);
+    intmul(ebx, ecx);
+    add(eax, ecx);
+    mov([ecx], edx);
+   // stdout.put("edx is ", (type int32 edx), nl);
+    if(edx <= pivot) then
+        push(ebx);
+        mov(4, ebx);
+        intmul(index, ebx);
+        add(eax, ebx);
+        push(eax);
+        mov([ebx], eax);
+        // stdout.put("edx is ", (type int32 edx), " eax is ", (type int32 eax), " index is ", index, nl);
+        mov(edx, [ebx]);
+        mov(eax, [ecx]);
+        pop(eax);
+        pop(ebx);
+
+        push(ebx);
+        mov(index, ebx);
+        inc(ebx);
+        mov(ebx, index);
+        pop(ebx);
+    endif;
+    pop(edx);
+    pop(ecx);
+endfor;
+
+mov(index, ecx);
+dec(ecx);
+mov([eax+ecx*4], ebx);
+//stdout.put("ebx is ", (type int32 ebx), " ecx is ", (type int32 ecx), nl);
+mov(pivot, [eax + ecx * 4]);
+mov(ebx, [eax]);
+pop(ebx);
+pop(eax);
+
+end partition;
+
+procedure qs(beginPtr : uns32; length: int32);
+
+begin qs;
+
+partition(beginPtr, length);
+
+//showArray(beginPtr, length);
+
+if((type int32 ecx) < 0) then 
+    exit qs;
+endif;
+
+push(edx);
+mov(ecx, edx);
+
+//stdout.put("edx is ", (type int32 edx), nl);
+
+qs(beginPtr, edx);
+
+
+push(eax);
+inc(edx);
+mov(edx, eax);
+intmul(4, eax);
+add(beginPtr, eax);
+
+push(ebx);
+mov(length, ebx);
+sub(edx, ebx);
+//stdout.put("length is ", length, " ebx is ", (type int32 ebx), "  edx is ", (type int32 edx), nl);
+qs(eax, ebx);
+pop(ebx);
+
+pop(eax);
+
+pop(edx);
+
+end qs;
+
+begin qs32;
+lea(eax, ia);
+showArray(eax, arrayNumber);
+
+qs(eax, arrayNumber);
+
+//stdout.put("ecx is ", (type int32 ecx), nl);
+showArray(eax, arrayNumber);
+
+end qs32;
