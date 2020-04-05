@@ -1,0 +1,10 @@
+program mul1;
+#include("stdlib.hhf")
+begin mul1;
+
+mov(4, al);
+mov(8, bl);
+imul(bl);
+stdout.put("ax = ", (type int16 ax))
+
+end mul1;
