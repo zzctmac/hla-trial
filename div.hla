@@ -1,0 +1,13 @@
+program div1;
+
+#include("stdlib.hhf")
+
+begin div1;
+
+mov(100, ax);
+mov(6554, dx);
+mul(dx, ax);
+
+stdout.put("dx is ", (type int16 dx), " ax is ", (type int16 ax), nl);
+
+end div1;
