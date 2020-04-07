@@ -1,0 +1,39 @@
+program regIndJmp;
+
+#include("stdlib.hhf")
+static 
+    i:int32;
+
+begin regIndJmp;
+
+try
+    stdout.put("Enter an integer value between 1 and 10:");
+    stdin.get(i);
+    mov(i, eax);
+    if(eax in 1..10) then
+        mov(&GoodInput, ebx);
+    else
+        mov(&valueRange, ebx);
+    endif;
+exception(ex.ConversionError)
+    mov(&convError, ebx);
+exception(ex.ValueOutOfRange)
+    mov(&valueRange, ebx);
+endtry;
+
+jmp(ebx);
+
+valueRange:
+    stdout.put("You entered a value outside the range 1...10" nl);
+    jmp Done;
+
+convError:
+    stdout.put("Your input contained illegal characters" nl);
+    jmp Done;
+
+GoodInput:
+    stdout.put("You entered the value ", i, nl);
+
+Done:
+
+end regIndJmp;

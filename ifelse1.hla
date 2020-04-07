@@ -1,0 +1,30 @@
+program ifelse1;
+#include("stdlib.hhf")
+static
+    a : int32 := 0;
+    b : int32 := 0;
+    c : int32 := 0;
+    d : int32 := 2;
+begin ifelse1;
+
+stdout.put("a = ", a, " b = ", b, "  c = ", c , "  d = ", d, nl);
+
+stdin.get(a);
+stdin.flushInput();
+stdin.get(b);
+
+mov(a, eax);
+cmp(eax, b);
+jne ElseBlk;
+mov(d, c);
+jmp EndOfIf;
+ElseBlk:
+inc(b);
+
+EndOfIf:
+stdout.put("a = ", a, " b = ", b, "  c = ", c , "  d = ", d, nl);
+
+
+
+
+end ifelse1;
