@@ -1,0 +1,8 @@
+#!/usr/bin/env php
+<?php
+    $fp = pathinfo($argv[1]);
+    $fn = $fp['filename'];
+    $r = 0;
+    system(sprintf("hla %s -e:output/%s", $argv[1], $fn), $r);
+    exit($r);
+?>
