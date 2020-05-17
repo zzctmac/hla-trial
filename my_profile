@@ -1,0 +1,5 @@
+PATH=/usr/hla:$PATH
+hlalib=/usr/hla/hlalib
+export hlalib
+hlainc=/usr/hla/include
+export hlainc
